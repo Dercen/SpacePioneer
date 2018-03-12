@@ -16,7 +16,7 @@ srand (time(NULL));
 PlaySound(TEXT("sound\\main.wav"), NULL,SND_ASYNC);
 printf("Welcome to Space Pioneer! Press any key to begin.");
 getch();
-system("cls");
+system("cls");// flip
 while(true) {
     printf("What is the name of your character?" ENDER);
     scanf("%s", name);
@@ -40,3 +40,4 @@ system("cls");
 story();
 return 0;
 }
+//helllllp;
