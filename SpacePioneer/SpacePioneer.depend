@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1520827363 source:c:\users\zache\documents\spacepioneer\spacepioneer\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+	<stdbool.h>
+	<ctype.h>
+	<time.h>
+	<windows.h>
+	<stdarg.h>
+	<math.h>
+	"variables.h"
+	"story.h"
+
+1520827329 c:\users\zache\documents\spacepioneer\spacepioneer\variables.h
+
+1520828147 c:\users\zache\documents\spacepioneer\spacepioneer\story.h
+
+1520878340 source:h:\processing\spacepioneer\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+	<stdbool.h>
+	<ctype.h>
+	<time.h>
+	<windows.h>
+	<stdarg.h>
+	<math.h>
+	"variables.h"
+	"story.h"
+
+1520878274 h:\processing\spacepioneer\variables.h
+
+1520878649 h:\processing\spacepioneer\story.h
+
