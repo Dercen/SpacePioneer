@@ -204,3 +204,50 @@ void shop(float p) {
         }
 }
 
+int decision(char question[], char choice1[], char choice2[], char choice3[]){
+    des:
+    printf(question);
+    printf("\na)%s \nb)%s \nc)%s \n\n:", choice1, choice2, choice3);
+    char a;
+    while(true){
+        a = getch();
+        if(a == 'a'){
+            return 1;
+            break;
+        }else if(a == 'b'){
+            return 2;
+            break;
+        }else if(a == 'c'){
+            return 3;
+            break;
+        }else{
+            system("cls");
+            goto des;
+            break;
+        }
+    }
+}
+
+int decision(char question[], char choice1[], char choice2[], char choice3[]){
+    des:
+    printf(question);
+    printf("\na)%s \nb)%s \nc)%s \n\n:", choice1, choice2, choice3);
+    char a;
+    while(true){
+        a = getch();
+        if(a == 'a'){
+            return 1;
+            break;
+        }else if(a == 'b'){
+            return 2;
+            break;
+        }else if(a == 'c'){
+            return 3;
+            break;
+        }else{
+            system("cls");
+            goto des;
+            break;
+        }
+    }
+}
