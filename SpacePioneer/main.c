@@ -40,3 +40,4 @@ system("cls");
 story();
 return 0;
 }
+//hi
