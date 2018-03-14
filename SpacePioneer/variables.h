@@ -9,7 +9,7 @@
 #define ss                 ANSI_COLOR_GREEN "%s" ANSI_COLOR_RESET
 #define repeat(n)          for (int i = 0; i < n; i++)
 #define decision(q, a, b, c) switch (d(q, a, b, c))
-
+#define deca(q, c) switch (da(q, c))
 char name[100];
 char cplnt[100];
 int fuel=0;
@@ -205,7 +205,7 @@ void shop(float p) {
         }
 }
 
-int d(char question[], char choice1[], char choice2[], char choice3[]){
+int d(char question[], char choice1[], char choice2[], char choice3[]){//decition with 3 choices
     char a;
     while(true){
         printf(question);
@@ -225,3 +225,23 @@ int d(char question[], char choice1[], char choice2[], char choice3[]){
         }
     }
 }
+
+int da(char question[], char choices[][]){//decition with any number of choices(currently untesed) 
+    //choices is an array of strings
+    //will start at 0 instead of 1
+    char a;
+    const char[27] index = "abcdefghijklmnopqrstuvwxyz";
+    while(true){
+        printf(question);
+        printf("\na)%s \nb)%s \nc)%s \n\n" ENDER, choice1, choice2, choice3);
+        a = getch();
+        for(int i = 0; i < sizeof(choices)/sizeof(choices[0]); i++){
+            if(a == index[i]){
+                return i;
+            }
+        }else{
+            system("cls");
+        }
+    }
+}
+
