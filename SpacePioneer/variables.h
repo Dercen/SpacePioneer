@@ -6,8 +6,9 @@
 #define ANSI_COLOR_CYAN    "\x1b[96m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ENDER              "\n|:> "
-#define ss                ANSI_COLOR_GREEN "%s" ANSI_COLOR_RESET
-#define repeat(n) for (int i = 0; i < n; i++)
+#define ss                 ANSI_COLOR_GREEN "%s" ANSI_COLOR_RESET
+#define repeat(n)          for (int i = 0; i < n; i++)
+#define decision(q, a, b, c) switch (d(q, a, b, c))
 
 char name[100];
 char cplnt[100];
@@ -121,8 +122,8 @@ void randencounter(int b) {
     }
 }
 
-void fly() {
-        while(prcnt != 10) {
+void fly(int f) {
+        while(prcnt != f) {
             Sleep(500);
             prcnt+=1;
             fuch=random(5);
@@ -156,12 +157,12 @@ void fly() {
             repeat(prcnt) {
                 printf("o");
             }
-            repeat(10-prcnt) {
+            repeat(f-prcnt) {
                 printf(" ");
             }
             printf("]");
             printf("\nHealth: %d\nFuel: %d\nHSJE: %d\nAmmo: %d\nCash: %d\n", health, fuel, hsje, ammo, cash);
-            if (random(5)==1) {
+            if (random(10)==1) {
                 system("cls");
                 randencounter(random(5));
                 getch();
@@ -171,30 +172,30 @@ void fly() {
 }
 
 void shop(float p) {
+        char a;
         int fc = ceil(5*p);
         int hsjec = ceil(200*p);
         int ac = ceil(5*p);
         while(true){
             printf("Welcome to my shop! What do you need?\n\n");
-            printf("Fuel: have %d, costs $%d for 10\nHyperspace Jump Engines: have %d, costs $%d for 1\nAmmo: have %d, costs $%d for 10\n\nCash: %d\n\n\nType 'done' when you are finished.\n" ENDER, fuel, fc, hsje, hsjec, ammo, ac, cash);
-            scanf("%s", shp);
-            *shp = tolower(*shp);
-            if ((strcmp(shp, "fuel") == 0) && (ceil(cash >= 5*p))) {
-                ceil(cash -= 5*p);
+            printf("a)Fuel: have %d, costs $%d for 10\nb)Hyperspace Jump Engines: have %d, costs $%d for 1\nc)Ammo: have %d, costs $%d for 10\n\nCash: %d\n\n\nPress 'g' when you are finished.\n" ENDER, fuel, fc, hsje, hsjec, ammo, ac, cash);
+            a = getch();
+            if ((a=='a') && (cash >= fc)) {
+                cash -= fc;
                 fuel += 10;
                 system("cls");
             }
-            else if ((strcmp(shp, "hsje") == 0) && (ceil(cash >= 200*p))) {
-                ceil(cash -= 200*p);
+            else if ((a=='b') && (cash >= hsjec)) {
+                cash -= hsjec;
                 hsje += 1;
                 system("cls");
             }
-            else if ((strcmp(shp, "ammo") == 0) && (ceil(cash >= 5*p))) {
-                ceil(cash -= 5*p);
+            else if ((a=='c') && (cash >= ac)) {
+                cash -= ac;
                 ammo += 10;
                 system("cls");
             }
-            else if (strcmp(shp, "done") == 0) {
+            else if (a=='g') {
                 printf("Thanks, and have a nice day!\n");
                 break;
             }
@@ -204,12 +205,11 @@ void shop(float p) {
         }
 }
 
-int decision(char question[], char choice1[], char choice2[], char choice3[]){
-    des:
-    printf(question);
-    printf("\na)%s \nb)%s \nc)%s \n\n:", choice1, choice2, choice3);
+int d(char question[], char choice1[], char choice2[], char choice3[]){
     char a;
     while(true){
+        printf(question);
+        printf("\na)%s \nb)%s \nc)%s \n\n" ENDER, choice1, choice2, choice3);
         a = getch();
         if(a == 'a'){
             return 1;
@@ -222,8 +222,6 @@ int decision(char question[], char choice1[], char choice2[], char choice3[]){
             break;
         }else{
             system("cls");
-            goto des;
-            break;
         }
     }
 }
