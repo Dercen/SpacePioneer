@@ -64,6 +64,7 @@ void story () {
         system("cls");
         printf("As you walk out of the shop, you are confronted by a guard.\nHe sees the patch you wear on your shirt, which\nis the insignia of the BOIS.\n");
         getch();
+        system("cls");
         printf("You are not allowed here! The Japanese white rice belongs to\nthe Japanese, and you will never get any!");
         getch();
         system("cls");
@@ -85,9 +86,15 @@ void story () {
                 break;
             }
         case 2:
-            k = random(cash/4);
-            printf("You offer the guard $%d, he takes it and lets you go.", k);
-            cash-=k;
+            if (cash != 0) {
+                k = random(cash/4);
+                printf("You offer the guard $%d, he takes it and lets you go.", k);
+                cash-=k;
+            }
+            else {
+                printf("You don't have any money, and the guard shoots you.");
+                die();
+            }
             getch();
             system("cls");
             break;
@@ -175,6 +182,8 @@ void story () {
             printf("You hide your BOIS patch, and start walking through the building like you\nwork there. You experience no problems whatsoever.");
             getch();
             system("cls");
+            break;
         }
+
     }
 }
