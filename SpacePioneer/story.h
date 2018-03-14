@@ -49,7 +49,7 @@ void story () {
         printf("You get onto your ship, and take off to go fight Imkay.");
         getch();
         system("cls");
-        fly();
+        fly(10);
         stage=3;
     }
     if (stage == 3)
@@ -67,30 +67,114 @@ void story () {
         printf("You are not allowed here! The Japanese white rice belongs to\nthe Japanese, and you will never get any!");
         getch();
         system("cls");
-        while(true){
-            printf("The guard pulls out a pistol and aims it at you. What do you do?\n\na: Quickdraw your pistol and shoot the guard\nb: Bribe the guard\nc: Run away, activating the planet's self destruct sequence on the way out.\n\n");
-            scanf("%s", ans);
+        int k;
+        decision("The guard pulls out a pistol and aims it at you. What do you do?", "Quickdraw your pistol and shoot the guard", "Bribe the guard", "Run away, activating the planet's self destruct sequence on the way out.")
+        {
+        case 1:
+            k = random(10);
+            if (k<=3) {
+                printf("You shot the guard, and got away.");
+                ammo--;
+                break;
+            }
+            else {
+                printf("You tried to pull a gun on someone who already had their gun out. You\nget shot first and die.\n");
+                getch();
+                system("cls");
+                die();
+                break;
+            }
+        case 2:
+            k = random(cash/4);
+            printf("You offer the guard $%d, he takes it and lets you go.", k);
+            cash-=k;
+            getch();
             system("cls");
-            if (strcmp(ans, "a") == 0) {
-                int k = random(10);
-                if (k<=3) {
-                    printf("You shot the guard, and got away.");
-                    ammo--;
+            break;
+        case 3:
+            printf("You just killed millions of people and will probably have to do a war crimes trial.\nOn the good side though, you did get some cash.");
+            cash+=100;
+            getch();
+            system("cls");
+            break;
+        }
+        fly(20);
+        stage=4;
+    }
+    if (stage == 4)
+    {
+        decision("You have reached an enemy research facility. What do you do?", "Sneaky approach", "Loud approach", "Casual approach")
+        {
+        case 1:
+            system("cls");
+            decision("You walk into the facility, sneakily.\nYou see a guard walk up behind him, and...", "Karate chop him", "Shoot him", "Sneak by him")
+            {
+            case 1:
+                if (random(10) >= 3) {
+                    printf("The guard turns around and shoots you.");
+                    getch();
+                    system("cls");
+                    die();
                     break;
                 }
                 else {
-                    printf("You tried to pull a gun on someone who already had their gun out. You\nget shot first and die.\n");
+                    printf("You successfully knock out the guard, and steal some of his money.");
+                    cash+=random(100);
+                    getch();
                     system("cls");
+                    break;
+                }
+            case 2:
+                if (ammo >= 1) {
+                    printf("You use your silencer on your gun and take out the guard silently.");
+                    ammo-=1;
+                    getch();
+                    system("cls");
+                    break;
+                }
+                else {
+                    printf("You don't have any ammo in your pistol, and because of this your\ngun makes a loud clicking noise. The guard turns around and shoots you.");
                     getch();
                     die();
+                    break;
+                }
+            case 3:
+                if (random(20) >= 3) {
+                    printf("The guard notices you and shoots you.");
+                    getch();
+                    die();
+                    break;
+                }
+                else {
+                    printf("You successfully sneak by.");
+                    getch();
+                    system("cls");
                 }
             }
-            else if (strcmp(ans, "b") == 0){
-                int k = random(cash/4);
-                printf("You offer the guard $%d, he takes it and lets you go.", k);
-                cash-=k;
+            break;
+        case 2:
+            system("cls");
+            printf("You run in, guns blazing.\n");
+            getch();
+            system("cls");
+            printf("Two security guards see you and open fire.");
+            getch();
+            system("cls");
+            if (random(10) <= 3) {
+                printf("You fire a few shots at them, but you get hit yourself! But the wound\nisn't major, and you manage to take out the guards.");
+                health--;
             }
+            else {
+                printf("You manage to take them out though without problem.");
+            }
+            getch();
+            system("cls");
+            break;
+        case 3:
+            system("cls");
+            printf("You hide your BOIS patch, and start walking through the building like you\nwork there. You experience no problems whatsoever.");
+            getch();
+            system("cls");
         }
-
     }
 }
