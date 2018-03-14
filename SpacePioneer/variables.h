@@ -36,13 +36,67 @@ r = rand() % a+1;
 return r;
 }
 
+void shop(float p) {
+        char a;
+        int fc = ceil(5*p);
+        int hsjec = ceil(200*p);
+        int ac = ceil(5*p);
+        while(true){
+            printf("Welcome to my shop! What do you need?\n\n");
+            printf("a)Fuel: have %d, costs $%d for 10\nb)Hyperspace Jump Engines: have %d, costs $%d for 1\nc)Ammo: have %d, costs $%d for 10\n\nCash: %d\n\n\nPress 'g' when you are finished.\n" ENDER, fuel, fc, hsje, hsjec, ammo, ac, cash);
+            a = getch();
+            if ((a=='a') && (cash >= fc)) {
+                cash -= fc;
+                fuel += 10;
+                system("cls");
+            }
+            else if ((a=='b') && (cash >= hsjec)) {
+                cash -= hsjec;
+                hsje += 1;
+                system("cls");
+            }
+            else if ((a=='c') && (cash >= ac)) {
+                cash -= ac;
+                ammo += 10;
+                system("cls");
+            }
+            else if (a=='g') {
+                printf("Thanks, and have a nice day!\n");
+                break;
+            }
+            else {
+                system("cls");
+            }
+        }
+}
+
+int d(char question[], char choice1[], char choice2[], char choice3[]){
+    char a;
+    while(true){
+        printf(question);
+        printf("\na)%s \nb)%s \nc)%s \n\n" ENDER, choice1, choice2, choice3);
+        a = getch();
+        if(a == 'a'){
+            return 1;
+            break;
+        }else if(a == 'b'){
+            return 2;
+            break;
+        }else if(a == 'c'){
+            return 3;
+            break;
+        }else{
+            system("cls");
+        }
+    }
+}
+
 void randencounter(int b) {
     if (b==1) {
-        while(1) {
-            printf("You've encountered space bandits! Do you want to:\n\na: Shoot them\nb: Run away\nc: Give them what they want\n\n" ENDER);
-            scanf("%s", ans);
-            if (strcmp(ans, "a") == 0) {
-                int k = random(10);
+            int k;
+            decision("You've encountered space bandits! Do you want to:", "Shoot them", "Run away", "Give them what they want"){
+                case 1:
+                k = random(10);
                 if (ammo >= k) {
                     printf("You shot the bandits.\n");
                     ammo -= k;
@@ -54,31 +108,26 @@ void randencounter(int b) {
                     health -= 1;
                     break;
                 }
+                case 2:
+                    printf("You ran away, but you were hit in the leg on the way out.\n");
+                    health-=1;
+                    break;
+                case 3:
+                    printf("You gave them some of your money.\n");
+                    cash -= random(cash/2);
+                    health -= 1;
+                    break;
             }
-            else if (strcmp(ans, "b") == 0) {
-                printf("You ran away, but you were hit in the leg on the way out.\n");
-                health-=1;
-                break;
-            }
-            else if (strcmp(ans, "c") == 0) {
-                printf("You gave them some of your money.\n");
-                cash -= random(cash/2);
-                health -= 1;
-                break;
-            }
-            system("cls");
-        }
     }
     if (b==2) {
         printf("Your ship got hit by an asteroid.\n");
         health -= 1;
     }
     if (b==3) {
-        while(1) {
-            printf("You've encountered an asteroid belt. Do you want to:\n\na: Go through it\nb: Go around it\nc: Blast your way through it\n\n" ENDER);
-            scanf("%s", ans);
-            if (strcmp(ans, "a") == 0) {
-                int k = random(10);
+            int k;
+            decision("You've encountered an asteroid belt. Do you want to:", "Go through it", "Go around it", "Blast your way through it"){
+            case 1:
+                k = random(10);
                 if (3 >= k) {
                     printf("You got through unharmed.\n");
                     break;
@@ -88,19 +137,16 @@ void randencounter(int b) {
                     health -= 1;
                     break;
                 }
-            }
-            else if (strcmp(ans, "b") == 0) {
+            case 2:
                 printf("You went around it, but it took awhile.\n");
                 fuel-=random(fuel/8);
                 break;
-            }
-            else if (strcmp(ans, "c") == 0) {
+            case 3:
                 printf("You blasted through it.\n");
                 ammo -= random(ammo/6);
                 break;
-            }
-            system("cls");
         }
+        system("cls");
     }
     if (b==4) {
         printf("You found an abandoned ship.\n");
@@ -169,59 +215,4 @@ void fly(int f) {
             }
         }
         system("cls");
-}
-
-void shop(float p) {
-        char a;
-        int fc = ceil(5*p);
-        int hsjec = ceil(200*p);
-        int ac = ceil(5*p);
-        while(true){
-            printf("Welcome to my shop! What do you need?\n\n");
-            printf("a)Fuel: have %d, costs $%d for 10\nb)Hyperspace Jump Engines: have %d, costs $%d for 1\nc)Ammo: have %d, costs $%d for 10\n\nCash: %d\n\n\nPress 'g' when you are finished.\n" ENDER, fuel, fc, hsje, hsjec, ammo, ac, cash);
-            a = getch();
-            if ((a=='a') && (cash >= fc)) {
-                cash -= fc;
-                fuel += 10;
-                system("cls");
-            }
-            else if ((a=='b') && (cash >= hsjec)) {
-                cash -= hsjec;
-                hsje += 1;
-                system("cls");
-            }
-            else if ((a=='c') && (cash >= ac)) {
-                cash -= ac;
-                ammo += 10;
-                system("cls");
-            }
-            else if (a=='g') {
-                printf("Thanks, and have a nice day!\n");
-                break;
-            }
-            else {
-                system("cls");
-            }
-        }
-}
-
-int d(char question[], char choice1[], char choice2[], char choice3[]){
-    char a;
-    while(true){
-        printf(question);
-        printf("\na)%s \nb)%s \nc)%s \n\n" ENDER, choice1, choice2, choice3);
-        a = getch();
-        if(a == 'a'){
-            return 1;
-            break;
-        }else if(a == 'b'){
-            return 2;
-            break;
-        }else if(a == 'c'){
-            return 3;
-            break;
-        }else{
-            system("cls");
-        }
-    }
 }
