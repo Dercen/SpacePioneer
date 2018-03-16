@@ -171,6 +171,7 @@ void randencounter(int b) {
 }
 
 void fly(int f) {
+        PlaySound(TEXT("sound\\spacetravel.wav"), NULL, SND_FILENAME | SND_ASYNC);
         int prcnt=0;
         int fuch=0;
         while(prcnt != f) {
@@ -219,6 +220,7 @@ void fly(int f) {
             }
         }
         clrscr();
+        PlaySound(NULL, NULL, SND_APPLICATION);
 }
 
 void ending() {
@@ -226,6 +228,7 @@ void ending() {
     printf("You head back home, and are rewarded with everything you could of ever wanted. Life, is good.\n\n\n\n\nTHE END");
     getch();
     clrscr();
+    PlaySound(TEXT("sound\\ending.wav"), NULL, SND_FILENAME | SND_ASYNC);
     while(true){
             if (cr==0) {
                 printf(ss, "CREDITS");
