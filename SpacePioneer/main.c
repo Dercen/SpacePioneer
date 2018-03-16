@@ -13,12 +13,12 @@
 
 int main (int argc, char const *argv[]) {
 srand (time(NULL));
-if (random(50)==1) {
-    PlaySound(TEXT("sound\\hiddensong.wav"), NULL, SND_FILENAME | SND_ASYNC);
-}
-else {
+//if (random(50)==1) {
+//    PlaySound(TEXT("sound\\hiddensong.wav"), NULL, SND_FILENAME | SND_ASYNC);
+//}
+//else {
     PlaySound(TEXT("sound\\main.wav"), NULL, SND_FILENAME | SND_ASYNC);
-}
+//}
 decision("Welcome to Space Pioneer!", "New Game", "Select Stage", "Exit") {
 case 1:
     break;
