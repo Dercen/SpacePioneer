@@ -138,7 +138,7 @@ void story () {
                     break;
                 }
             case 3:
-                if (random(20) >= 3) {
+                if (random(20) <= 3) {
                     printf("The guard notices you and shoots you.");
                     getch();
                     die();
@@ -179,7 +179,7 @@ void story () {
         getch();
         clrscr();
         Sleep(500);
-        PlaySound(TEXT("sound\\explosion.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound(TEXT("sound\\explosion.wav"), NULL, SND_ASYNC);
         Sleep(250);
         printf("Your rocket got to the Imkay system, but you crashed in the outer reaches of it.\nLooks like you will have to get to the main planet in your own ship.");
         getch();
