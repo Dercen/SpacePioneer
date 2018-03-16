@@ -99,26 +99,29 @@ void randencounter(int b) {
             case 1:
                 if (ammo >= k) {
                     printf("You shot the bandits.\n");
+                    getch();
                     ammo -= k;
                     break;
                 }
                 else {
                     printf("You shot at the bandits, but you ran out of ammo!\n");
+                    getch();
                     ammo = 0;
                     health -= 1;
                     break;
                 }
             case 2:
                 printf("You ran away, but you were hit in the leg on the way out.\n");
+                getch();
                 health-=1;
                 break;
             case 3:
                 printf("You gave them some of your money.\n");
+                getch();
                 cash -= random(cash/2);
                 health -= 1;
                 break;
             }
-            clrscr();
     }
     if (b==2) {
         printf("Your ship got hit by an asteroid.\n");
@@ -130,23 +133,26 @@ void randencounter(int b) {
             case 1:
                 if (3 >= k) {
                     printf("You got through unharmed.\n");
+                    getch();
                     break;
                 }
                 else {
                     printf("You took some damage getting through the belt.\n");
+                    getch();
                     health -= 1;
                     break;
                 }
             case 2:
                 printf("You went around it, but it took awhile.\n");
+                getch();
                 fuel-=random(fuel/8);
                 break;
             case 3:
                 printf("You blasted through it.\n");
+                getch();
                 ammo -= random(ammo/6);
                 break;
             }
-            clrscr();
     }
     if (b==4) {
         printf("You found an abandoned ship.\n");
@@ -167,11 +173,10 @@ void randencounter(int b) {
         }
     }
     getch();
-    clrscr();
 }
 
 void fly(int f) {
-        PlaySound(TEXT("sound\\spacetravel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound(TEXT("sound\\spacetravel.wav"), NULL, SND_ASYNC);
         int prcnt=0;
         int fuch=0;
         while(prcnt != f) {
@@ -228,7 +233,7 @@ void ending() {
     printf("You head back home, and are rewarded with everything you could of ever wanted. Life, is good.\n\n\n\n\nTHE END");
     getch();
     clrscr();
-    PlaySound(TEXT("sound\\ending.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    PlaySound(TEXT("sound\\ending.wav"), NULL, SND_ASYNC);
     while(true){
             if (cr==0) {
                 printf(ss, "CREDITS");
