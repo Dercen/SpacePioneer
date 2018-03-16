@@ -13,14 +13,42 @@
 
 int main (int argc, char const *argv[]) {
 srand (time(NULL));
-PlaySound(TEXT("sound\\main.wav"), NULL,SND_ASYNC);
-printf("Welcome to Space Pioneer! Press any key to begin.");
-getch();
-system("cls");
+if (random(50)==1) {
+    PlaySound(TEXT("sound\\hiddensong.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+else {
+    PlaySound(TEXT("sound\\main.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+decision("Welcome to Space Pioneer!", "New Game", "Select Stage", "Exit") {
+case 1:
+    break;
+case 2:
+    while (true) {
+        clrscr();
+        printf("Type your stage:\n" ENDER);
+        scanf("%d", &stage);
+        if (stage > 12) {
+            stage=0;
+            printf("Invalid stage.");
+            getch();
+            clrscr();
+        }
+        else {
+            clrscr();
+            break;
+        }
+    }
+    break;
+case 3:
+    exit(1);
+    break;
+}
+clrscr();
+PlaySound(NULL, NULL, SND_APPLICATION);
 while(true) {
     printf("What is the name of your character?" ENDER);
     scanf("%s", name);
-    system("cls");
+    clrscr();
     question:
     printf("So your name is " ss ". Is this correct?" ENDER, name);
     scanf("%s", ans);
@@ -29,15 +57,14 @@ while(true) {
         if (strcmp(ans, "yes") == 0)
             break;
         if (strcmp(ans, "no") == 0)
-            system("cls");
+            clrscr();
     }
     else {
-        system("cls");
+        clrscr();
         goto question;
     }
 }
-system("cls");
+clrscr();
 story();
 return 0;
 }
-//hi
