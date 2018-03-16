@@ -20,7 +20,7 @@ char ans[100];
 int cash = 500;
 int stage = 0;
 char shp[100];
-int health=100;
+int health=10;
 
 void clrscr(){
         system("cls");
