@@ -20,10 +20,11 @@ char ans[100];
 int cash = 500;
 int stage = 0;
 char shp[100];
-int r;
-int prcnt=0;
-int health=10;
-int fuch=0;
+int health=100;
+
+void clrscr(){
+        system("cls");
+}
 
 void die() {
 printf("You died. Good job.\n");
@@ -32,7 +33,7 @@ exit(1);
 }
 
 int random(int a) {
-r = rand() % a+1;
+int r = rand() % a+1;
 return r;
 }
 
@@ -48,24 +49,24 @@ void shop(float p) {
             if ((a=='a') && (cash >= fc)) {
                 cash -= fc;
                 fuel += 10;
-                system("cls");
+                clrscr();
             }
             else if ((a=='b') && (cash >= hsjec)) {
                 cash -= hsjec;
                 hsje += 1;
-                system("cls");
+                clrscr();
             }
             else if ((a=='c') && (cash >= ac)) {
                 cash -= ac;
                 ammo += 10;
-                system("cls");
+                clrscr();
             }
             else if (a=='g') {
                 printf("Thanks, and have a nice day!\n");
                 break;
             }
             else {
-                system("cls");
+                clrscr();
             }
         }
 }
@@ -86,17 +87,16 @@ int d(char question[], char choice1[], char choice2[], char choice3[]){
             return 3;
             break;
         }else{
-            system("cls");
+            clrscr();
         }
     }
 }
 
 void randencounter(int b) {
     if (b==1) {
-            int k;
+            int k = random(10);
             decision("You've encountered space bandits! Do you want to:", "Shoot them", "Run away", "Give them what they want"){
-                case 1:
-                k = random(10);
+            case 1:
                 if (ammo >= k) {
                     printf("You shot the bandits.\n");
                     ammo -= k;
@@ -108,26 +108,26 @@ void randencounter(int b) {
                     health -= 1;
                     break;
                 }
-                case 2:
-                    printf("You ran away, but you were hit in the leg on the way out.\n");
-                    health-=1;
-                    break;
-                case 3:
-                    printf("You gave them some of your money.\n");
-                    cash -= random(cash/2);
-                    health -= 1;
-                    break;
+            case 2:
+                printf("You ran away, but you were hit in the leg on the way out.\n");
+                health-=1;
+                break;
+            case 3:
+                printf("You gave them some of your money.\n");
+                cash -= random(cash/2);
+                health -= 1;
+                break;
             }
+            clrscr();
     }
     if (b==2) {
         printf("Your ship got hit by an asteroid.\n");
         health -= 1;
     }
     if (b==3) {
-            int k;
+            int k = random(10);
             decision("You've encountered an asteroid belt. Do you want to:", "Go through it", "Go around it", "Blast your way through it"){
             case 1:
-                k = random(10);
                 if (3 >= k) {
                     printf("You got through unharmed.\n");
                     break;
@@ -145,8 +145,8 @@ void randencounter(int b) {
                 printf("You blasted through it.\n");
                 ammo -= random(ammo/6);
                 break;
-        }
-        system("cls");
+            }
+            clrscr();
     }
     if (b==4) {
         printf("You found an abandoned ship.\n");
@@ -166,9 +166,13 @@ void randencounter(int b) {
             cash+=100;
         }
     }
+    getch();
+    clrscr();
 }
 
 void fly(int f) {
+        int prcnt=0;
+        int fuch=0;
         while(prcnt != f) {
             Sleep(500);
             prcnt+=1;
@@ -182,20 +186,20 @@ void fly(int f) {
                 fuel=0;
                 qcg=true;
                 getch();
-                system("cls");
+                clrscr();
             }
             else if ((fuel>0) && (qcg==true))
             {
                 printf("Disabling QCG...\n");
                 qcg=false;
                 getch();
-                system("cls");
+                clrscr();
             }
             else if ((fuel==0) && (qcg==true))
             {
                 health-=1;
             }
-            system("cls");
+            clrscr();
             if (health<=0) {
                 die();
             }
@@ -209,10 +213,69 @@ void fly(int f) {
             printf("]");
             printf("\nHealth: %d\nFuel: %d\nHSJE: %d\nAmmo: %d\nCash: %d\n", health, fuel, hsje, ammo, cash);
             if (random(10)==1) {
-                system("cls");
+                clrscr();
                 randencounter(random(5));
                 getch();
             }
         }
-        system("cls");
+        clrscr();
+}
+
+void ending() {
+    int cr=0;
+    printf("You head back home, and are rewarded with everything you could of ever wanted. Life, is good.\n\n\n\n\nTHE END");
+    getch();
+    clrscr();
+    while(true){
+            if (cr==0) {
+                printf(ss, "CREDITS");
+            }
+            if ((cr>=1) && (cr<4)) {
+                printf("\n");
+            }
+            if (cr==4) {
+                printf("Code - Zachery Woodruff");
+            }
+            if ((cr>=5) && (cr<7)) {
+                printf("\n");
+            }
+            if (cr==7) {
+                printf("Code - Cody Toone");
+            }
+            if ((cr>=8) && (cr<10)) {
+                printf("\n");
+            }
+            if (cr==10) {
+                printf("Code - Gage Wilson");
+            }
+            if ((cr>=11) && (cr<13)) {
+                printf("\n");
+            }
+            if (cr==13) {
+                printf("Code And Story - Shandon Holm");
+            }
+            if ((cr>=14) && (cr<16)) {
+                printf("\n");
+            }
+            if (cr==16) {
+                printf("Code And Story - Trystan Rousseau");
+            }
+            if ((cr>=17) && (cr<19)) {
+                printf("\n");
+            }
+            if (cr==19) {
+                printf("Code And Sound Design - Gabriel Cortez");
+            }
+            if ((cr>=20) && (cr<30)) {
+                printf("\n");
+            }
+            if (cr==30) {
+                printf("Thanks for playing!");
+                break;
+            }
+        cr++;
+        Sleep(300);
+    }
+    getch();
+    exit(1);
 }
